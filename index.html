@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Академия Быстрого Банкротства</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff6b6b, #ffa500);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #d63031;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .slogan {
+            font-size: 1.5em;
+            color: #e17055;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #d63031, #e17055);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #d63031;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .calculator {
+            text-align: center;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        input {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1em;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #e17055;
+        }
+
+        .result {
+            background: #ffeaa7;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .failures-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .failure-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            border: 3px solid #ffeaa7;
+        }
+
+        .failure-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .failure-card h3 {
+            color: #d63031;
+            margin-bottom: 10px;
+        }
+
+        .advice-list {
+            list-style: none;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .advice-item {
+            background: #ffeaa7;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            border-left: 5px solid #e17055;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .bankruptcy-speed {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .speed-option {
+            text-align: center;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            margin: 0 5px;
+        }
+
+        .speed-option.selected {
+            border-color: #d63031;
+            background: #ffeaa7;
+            transform: scale(1.05);
+        }
+
+        .emoji {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .warning {
+            color: #d63031;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Академия Быстрого Банкротства</h1>
+            <p class="slogan">"Учись терять деньги с удовольствием!"</p>
+            <button class="cta-button" onclick="scrollToCalculator()">Начать путь к минусам 💸</button>
+        </header>
+
+        <section class="calculator" id="calculator">
+            <h2>🧮 Калькулятор Банкротства</h2>
+            <div class="input-group">
+                <input type="number" id="investment" placeholder="Стоимость вашей гениальной идеи (сум)" value="700000000">
+                <input type="number" id="income" placeholder="Годовой доход от идеи (сум)" value="4000000">
+                <button class="cta-button" onclick="calculateBankruptcy()">Рассчитать мой провал! 📉</button>
+            </div>
+            <div class="result" id="result">
+                <h3>🎉 Поздравляем с гениальным решением!</h3>
+                <p>Ваши инвестиции: <span class="highlight" id="investResult">700,000,000</span> сум</p>
+                <p>Ваш годовой доход: <span class="highlight" id="incomeResult">4,000,000</span> сум</p>
+                <p class="warning">💀 Вы выйдете в ноль через: <span id="yearsResult">175</span> лет!</p>
+                <p><em>"Это новый рекорд в стратегическом планировании! Ваши правнуки будут вам благодарны!"</em></p>
+            </div>
+        </section>
+
+        <section class="failures">
+            <h2>🏆 Галерея Гениальных Провалов</h2>
+            <div class="failures-gallery">
+                <div class="failure-card">
+                    <h3>📦 Бумагорезательный комплекс</h3>
+                    <p>Инвестиция: 700 млн сум</p>
+                    <p>Прибыль: 4 млн сум/год</p>
+                    <p class="warning">Окупаемость: 175 лет</p>
+                </div>
+                <div class="failure-card">
+                    <h3>☕ Кофейня в подвале</h3>
+                    <p>Инвестиция: 200 млн сум</p>
+                    <p>Посетители: 2 в день</p>
+                    <p class="warning">Окупаемость: Бесконечность</p>
+                </div>
+                <div class="failure-card">
+                    <h3>⛄ Продажа снега зимой</h3>
+                    <p>Инвестиция: 50 млн сум</p>
+                    <p>Спрос: сезонный</p>
+                    <p class="warning">Конкуренция: природа</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="advice">
+            <h2>💡 Советы от Профессиональных Банкротов</h2>
+            <ul class="advice-list">
+                <li class="advice-item">📊 "Никогда не считай расходы — это портит настроение!"</li>
+                <li class="advice-item">🏦 "Бери максимальный кредит, ведь банк не ошибается!"</li>
+                <li class="advice-item">⚡ "Если прибыль не идёт — купи ещё оборудования!"</li>
+                <li class="advice-item">🎯 "Маркетинг — это для слабаков! Хороший продукт продаст себя сам!"</li>
+                <li class="advice-item">📈 "Главное — масштаб! Начинай сразу с международной экспансии!"</li>
+            </ul>
+        </section>
+
+        <section class="contact">
+            <h2>📝 Подать заявку на банкротство</h2>
+            <div class="contact-form">
+                <input type="text" id="name" placeholder="Ваше имя" style="margin-bottom: 15px;">
+                <input type="number" id="bankruptcySum" placeholder="Сумма будущих убытков" style="margin-bottom: 15px;">
+                
+                <p>Скорость банкротства:</p>
+                <div class="bankruptcy-speed">
+                    <div class="speed-option" onclick="selectSpeed(this)">
+                        <div class="emoji">🐢</div>
+                        <p>Медленно</p>
+                    </div>
+                    <div class="speed-option" onclick="selectSpeed(this)">
+                        <div class="emoji">🚶‍♂️</div>
+                        <p>Быстро</p>
+                    </div>
+                    <div class="speed-option" onclick="selectSpeed(this)">
+                        <div class="emoji">⚡</div>
+                        <p>Мгновенно</p>
+                    </div>
+                </div>
+                
+                <button class="cta-button" onclick="submitApplication()">Стать банкротом! 🎭</button>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2024 Академия Быстрого Банкротства. <span class="warning">Не несите ответственность за свои решения!</span></p>
+            <p><small>* Сайт создан в сатирических целях. Все советы — шутка. Считайте свои инвестиции! 🧮</small></p>
+        </footer>
+    </div>
+
+    <script>
+        function scrollToCalculator() {
+            document.getElementById('calculator').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        function calculateBankruptcy() {
+            const investment = parseInt(document.getElementById('investment').value) || 0;
+            const income = parseInt(document.getElementById('income').value) || 1;
+            
+            const years = Math.ceil(investment / income);
+            
+            document.getElementById('investResult').textContent = investment.toLocaleString();
+            document.getElementById('incomeResult').textContent = income.toLocaleString();
+            document.getElementById('yearsResult').textContent = years;
+            
+            const result = document.getElementById('result');
+            result.classList.add('show');
+        }
+
+        function selectSpeed(element) {
+            document.querySelectorAll('.speed-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+        function submitApplication() {
+            const name = document.getElementById('name').value || 'Аноним';
+            const sum = document.getElementById('bankruptcySum').value || '0';
+            
+            alert(`🎉 Поздравляем, ${name}! Ваша заявка на банкротство на сумму ${sum} сум принята! Скоро наш менеджер свяжется с вами для полного разорения! 💸`);
+        }
+
+        // Автоматически рассчитываем при загрузке
+        window.onload = calculateBankruptcy;
+    </script>
+</body>
+</html>
